@@ -26,28 +26,31 @@ def convert_to_pencil_sketchLA(image_path, save_path):
     image = image.filter(ImageFilter.CONTOUR)
     image.save(save_path)
 root_dir = "data"
+# for subdir, dirs, files in os.walk(root_dir):
+#     for file in files:
+#         if file == 'original.jpg':
+#             print('inside original')
+#             image_path = os.path.join(subdir, file)
+#             save_path = os.path.join(subdir, "resized.jpg")
+#             resize_with_aspect_ratio(image_path,(128,128) ,save_path)
+
 for subdir, dirs, files in os.walk(root_dir):
     for file in files:
         if file == 'original.jpg':
-            print('inside original')
+            print('inside resized',subdir)
             image_path = os.path.join(subdir, file)
-            save_path = os.path.join(subdir, "resized.jpg")
-            resize_with_aspect_ratio(image_path,(128,128) ,save_path)
-
-for subdir, dirs, files in os.walk(root_dir):
-    for file in files:
-        if file == 'resized.jpg':
-            print('inside resized')
-            image_path = os.path.join(subdir, file)
-            save_path = os.path.join(subdir, "pencil_sketch_" + file)
-            convert_to_pencil_sketch(image_path, save_path)
+            save_path = os.path.join(subdir, "pencilLA" + file)
+            try:
+                convert_to_pencil_sketchLA(image_path, save_path)
+            except:
+                print('error')
 
 
-for subdir, dirs, files in os.walk(root_dir):
-    for file in files:
-        if file == 'resized.jpg':
-            print('inside resized')
-            image_path = os.path.join(subdir, file)
-            save_path = os.path.join(subdir, "sketchLA" + file)
-            convert_to_pencil_sketchLA(image_path, save_path)
+# for subdir, dirs, files in os.walk(root_dir):
+#     for file in files:
+#         if file == 'original.jpg':
+#             print('inside resized')
+#             image_path = os.path.join(subdir, file)
+#             save_path = os.path.join(subdir, "sketchLA" + file)
+#             convert_to_pencil_sketchLA(image_path, save_path)
 
