@@ -25,7 +25,15 @@ def convert_to_pencil_sketchLA(image_path, save_path):
     image = Image.open(image_path).convert("RGBA").convert("LA")
     image = image.filter(ImageFilter.CONTOUR)
     image.save(save_path)
+
+
+#5
+def imageRotate(imagePath, savePath):
+    im = Image.open(imagePath)
+    rotateImage = im.rotate(270)
+    rotateImage.save(savePath)
 root_dir = "data"
+
 # for subdir, dirs, files in os.walk(root_dir):
 #     for file in files:
 #         if file == 'original.jpg':
@@ -34,16 +42,16 @@ root_dir = "data"
 #             save_path = os.path.join(subdir, "resized.jpg")
 #             resize_with_aspect_ratio(image_path,(128,128) ,save_path)
 
-for subdir, dirs, files in os.walk(root_dir):
-    for file in files:
-        if file == 'original.jpg':
-            print('inside resized',subdir)
-            image_path = os.path.join(subdir, file)
-            save_path = os.path.join(subdir, "pencilLA" + file)
-            try:
-                convert_to_pencil_sketchLA(image_path, save_path)
-            except:
-                print('error')
+# for subdir, dirs, files in os.walk(root_dir):
+#     for file in files:
+#         if file == 'original.jpg':
+#             print('inside resized',subdir)
+#             image_path = os.path.join(subdir, file)
+#             save_path = os.path.join(subdir, "pencilLA" + file)
+#             try:
+#                 convert_to_pencil_sketchLA(image_path, save_path)
+#             except:
+#                 print('error')
 
 
 # for subdir, dirs, files in os.walk(root_dir):
@@ -54,3 +62,13 @@ for subdir, dirs, files in os.walk(root_dir):
 #             save_path = os.path.join(subdir, "sketchLA" + file)
 #             convert_to_pencil_sketchLA(image_path, save_path)
 
+for subdir, dirs, files in os.walk(root_dir):
+    for file in files:
+        if file == 'original.jpg':
+            print('inside resized', subdir)
+            image_path = os.path.join(subdir, file)
+            save_path = os.path.join(subdir, "twoseventy" + file)
+            try:
+                imageRotate(image_path, save_path)
+            except: 
+                print('error')
