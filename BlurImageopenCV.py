@@ -9,11 +9,11 @@ root_dir = "data"
 
 for subdir, dirs, files in os.walk(root_dir):
     for file in files:
-        if file == 'black_whiteresized.jpg':
+        if file == 'Age7.png':
             print('inside blureed',subdir)
             image_path = os.path.join(subdir, file)
             save_path = os.path.join(subdir, "blur" + file)
             try:
-                blurImage(image_path, (10,10),save_path)
+                blurImage(image_path, (50,50),save_path)
             except:
                 print('error')
